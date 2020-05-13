@@ -1,0 +1,54 @@
+<!-- DataTable -->
+
+<div class="container">
+  <div class="row">
+    <h3>
+      Lista de Multipla seleção
+    </h3>
+    <div class="col" style="float: left; width: 75%;">
+      <ngx-datatable
+        class="material"
+        [rows]="rows"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [limit]="5"
+        [selected]="selected"
+        [selectionType]="SelectionType.multiClick"
+        (select)="onSelect($event)"
+      >
+        <ngx-datatable-column prop="code" name="Codigo"></ngx-datatable-column>
+        <ngx-datatable-column prop="name" name="Nome"></ngx-datatable-column>
+        <ngx-datatable-column prop="dropdown" name="Tipo"></ngx-datatable-column>
+        <ngx-datatable-column prop="value" name="Valor"></ngx-datatable-column>
+        <ngx-datatable-column prop="text" name="Texto"></ngx-datatable-column>
+        <ngx-datatable-column prop="acoes" name="Ações"></ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+
+    <div class="selected-column">
+      <h4>Seleções</h4>
+      <ul>
+        <li *ngFor="let sel of selected">
+          {{ sel.name }}
+        </li>
+        <li *ngIf="!selected.length">Sem seleções</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- <button class="btn btn-outline-primary md-2"
+            (click)="edit(p, p.key)">
+            Edit
+          </button>
+          <button class="btn btn-outline-danger ml-2" (click)="delete(p.key)">
+            Delete
+          </button> -->
+  <div class=" col d-flex justify-content-end">
+    <label class="d-inline-flex p-2 bd-highlight"
+      >Cadastrar novos produtos</label>
+    <button (click)="goToAddProduct()" class="btn btn-outline-primary md-2">
+      Cadastrar
+    </button>
+  </div>
+</div>

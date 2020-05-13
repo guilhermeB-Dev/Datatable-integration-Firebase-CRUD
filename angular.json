@@ -5,7 +5,11 @@
   "projects": {
     "Datatable-integration-project": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+        "styleext": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -119,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Datatable-integration-project"
+    }
+  },
+  "defaultProject": "Datatable-integration-project",
+  "cli": {
+    "analytics": "1c90b45c-d1b4-4533-b165-2498c4294d2b"
+  }
 }
