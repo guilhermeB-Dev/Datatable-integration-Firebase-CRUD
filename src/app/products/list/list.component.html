@@ -1,28 +1,30 @@
 <!-- DataTable -->
 
 <div class="container">
-  <div class="row">
+  <div>
     <h3>
       Lista de Multipla seleção
     </h3>
-    <div class="col" style="float: left; width: 75%;">
-      <ngx-datatable
-        class="material"
-        [rows]="rows"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        rowHeight="auto"
-        [limit]="5"
-        [selected]="selected"
-        [selectionType]="SelectionType.multiClick"
-        (select)="onSelect($event)"
-      >
-        <ngx-datatable-column prop="code" name="Codigo"></ngx-datatable-column>
-        <ngx-datatable-column prop="name" name="Nome"></ngx-datatable-column>
-        <ngx-datatable-column prop="dropdown" name="Tipo"></ngx-datatable-column>
-        <ngx-datatable-column prop="value" name="Valor"></ngx-datatable-column>
-        <ngx-datatable-column prop="text" name="Texto"></ngx-datatable-column>
-        <ngx-datatable-column prop="acoes" name="Ações"></ngx-datatable-column>
+    <div style="float: left; width: 80%;">
+      <ngx-datatable class="material" [rows]="rows" [columns]="columns" [headerHeight]="50"
+        [footerHeight]="50" rowHeight="auto" [limit]="5" [selected]="selected"
+        [selectionType]="SelectionType.multiClick" (select)="onSelect($event)">
+        <ngx-datatable-column
+          *ngFor="let col of columns"
+          prop="{{ col.prop }}"
+          name="{{ col.name }}"
+        >
+        </ngx-datatable-column>
+        <ngx-datatable-column sortable="false" prop="code" name="Actions">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button class="btn btn-outline-primary mr-1 btn-sm" (click)="edit(row, null)">
+            Edit
+            </button>
+            <button class="btn btn-outline-danger mx-1 btn-sm" (click)="delete(value)">
+              Delete
+            </button>
+          </ng-template>
+        </ngx-datatable-column>
       </ngx-datatable>
     </div>
 
@@ -36,14 +38,6 @@
       </ul>
     </div>
   </div>
-
-  <!-- <button class="btn btn-outline-primary md-2"
-            (click)="edit(p, p.key)">
-            Edit
-          </button>
-          <button class="btn btn-outline-danger ml-2" (click)="delete(p.key)">
-            Delete
-          </button> -->
   <div class=" col d-flex justify-content-end">
     <label class="d-inline-flex p-2 bd-highlight"
       >Cadastrar novos produtos</label>

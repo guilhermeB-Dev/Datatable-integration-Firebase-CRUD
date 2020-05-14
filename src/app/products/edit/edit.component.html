@@ -2,7 +2,7 @@
   <div class="container">
     <h3>Cadastro de Produtos</h3>
     <div class="row">
-      <div class="container-fluid">
+      <div class="container">
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Codigo produtos</label>
@@ -70,8 +70,11 @@
           ></textarea>
         </div>
         <div class="d-flex justify-content-end">
-          <button [routerLink]="['/list']" class="btn btn-link">Voltar</button>
-
+          
+        </div>  
+        
+        <div class="d-flex justify-content-end">
+          <button type="button" (click)="back()" class="btn btn-link">Voltar</button>
           <button type="submit" class="btn btn-outline-primary md-2">
             Confirmar cadastro
           </button>

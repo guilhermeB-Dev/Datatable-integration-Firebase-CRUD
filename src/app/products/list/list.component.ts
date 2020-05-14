@@ -18,13 +18,21 @@ import { SelectionType } from './selection.type';
 })
 export class ListComponent implements OnInit {
   rows: Observable<any>;
-  
+
   selected = [];
 
   SelectionType = SelectionType;
 
   product: Product;
   key: string = '';
+
+  columns = [
+    { prop: 'code', name: 'Código'},
+    { prop: 'name', name: 'Nome'},
+    { prop: 'dropdown', name: 'Tipo'},
+    { prop: 'value', name: 'Valor'},
+    { prop: 'text', name: 'Texto'},
+  ];
 
   constructor(
     private _servicesService: ServicesService,
@@ -39,10 +47,12 @@ export class ListComponent implements OnInit {
   }
 
   delete(key: string) {
+    console.log(key)
     this._servicesService.dalete(key);
   }
 
   edit(product: Product, key: string) {
+    console.log(key);
     this._servicesDataService.obtemProduct(product, key);
     this.router.navigate(['edit']);
   }

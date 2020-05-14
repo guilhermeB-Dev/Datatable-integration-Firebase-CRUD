@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicesService } from '../../services/services.service';
 import { ServicesDataService } from '../../services/services-data.service';
 import { Product } from 'src/app/modules/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'edit',
@@ -16,25 +17,22 @@ export class EditComponent implements OnInit {
 
   constructor(
     private _servicesService: ServicesService,
-    private _servicesDataService: ServicesDataService
+    private _servicesDataService: ServicesDataService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.product = new Product();
     this.newRegister();
   }
 
   newRegister(){
-    this.product = new Product();
-    this._servicesDataService.productAtual.subscribe(data => {
-      if ( data.product && data.key ) {
-        this.product = new Product();
-        this.product.code = data.product.code;
-        this.product.name = data.product.name;
-        this.product.dropdown = data.product.dropdown;
-        this.product.value = data.product.value;
-        this.product.text = data.product.text;
-        this.key = data.key;
-      }
+    if (this._servicesDataService.productAtual == null) return;
+
+    this._servicesDataService.productAtual.subscribe((data) => {
+      if (!data.product || !data.key) return;
+      this.product = this.setValues(this.product, data.product);
+      this.key = data.key;
     });
   }
 
@@ -47,5 +45,16 @@ export class EditComponent implements OnInit {
 
     this.product = new Product();
     this.key = null;
+  }
+
+  back(){
+    this.router.navigate(['list']);
+  }
+
+  setValues(origin, destiny) {
+    for (let [key, value] of Object.entries(origin)) {
+      destiny[key] = value;
+    }
+    return destiny;
   }
 }
