@@ -1,6 +1,3 @@
-*{
-  box-sizing: content-box;
-}
 body {
   letter-spacing: 0.01rem;
 }
@@ -36,12 +33,8 @@ body {
 }
 
 input[type='text'] {
-  font-size: 14px;
   display: block;
-  background: transparent;
   width: 100%;
-  border: none;
-  border-bottom: 1px solid #5264ae;
 }
 
 textarea {
@@ -186,7 +179,6 @@ nav h3 small {
 select {
   width: 100%;
   height: 30px;
-  margin: 5px 0;
 }
 
 .age-is-ten {
